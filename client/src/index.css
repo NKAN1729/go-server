@@ -1,0 +1,52 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper:       #f5f0e8;
+  --paper-dark:  #ede6d6;
+  --ink:         #1a1410;
+  --ink-light:   #4a3f35;
+  --ink-faint:   #9a8f85;
+  --board:       #dcb468;
+  --board-dark:  #c9a050;
+  --board-line:  #7a5c2e;
+  --star-point:  #5a3e1e;
+  --stone-black: #1a1410;
+  --stone-white: #f8f4ec;
+  --stone-white-border: #c8bfaf;
+  --red:         #c0392b;
+  --green:       #27ae60;
+  --font-serif:  "Noto Serif JP", serif;
+  --font-mono:   "DM Mono", monospace;
+  --radius:      4px;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: var(--font-serif);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: opacity 0.15s, transform 0.1s;
+}
+button:hover  { opacity: 0.8; }
+button:active { transform: scale(0.97); }
+
+input {
+  font-family: var(--font-mono);
+  outline: none;
+}
+
+@keyframes fadeIn    { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes stoneDrop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulse     { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.fade-in { animation: fadeIn 0.35s ease both; }

@@ -1,0 +1,38 @@
+﻿name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: CI gate
+    uses: ./.github/workflows/ci.yml
+
+  deploy-game-server:
+    name: Deploy game-server
+    needs: ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Trigger Render deploy â€” game-server
+        run: |
+          curl --silent --show-error --fail \
+            "${{ secrets.RENDER_DEPLOY_HOOK_GAME_SERVER }}"
+          echo "game-server deploy triggered"
+
+  deploy-ws-gateway:
+    name: Deploy ws-gateway
+    needs: deploy-game-server
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Trigger Render deploy â€” ws-gateway
+        run: |
+          curl --silent --show-error --fail \
+            "${{ secrets.RENDER_DEPLOY_HOOK_WS_GATEWAY }}"
+          echo "ws-gateway deploy triggered"

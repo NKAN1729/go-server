@@ -1,0 +1,32 @@
+{
+  "name": "@go-server/game-server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "test": "echo 'no tests'",
+    "lint": "eslint src --max-warnings 0"
+  },
+  "dependencies": {
+    "@go-server/go-game": "workspace:*",
+    "@go-server/shared-types": "workspace:*",
+    "@fastify/cors": "^9.0.1",
+    "drizzle-orm": "^0.30.10",
+    "fastify": "^4.27.0",
+    "ioredis": "^5.3.2",
+    "nanoid": "^5.0.7",
+    "postgres": "^3.4.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "drizzle-kit": "^0.21.4",
+    "tsx": "^4.7.3",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@go-server/ws-gateway",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "test": "echo 'no tests'",
+    "lint": "eslint src --max-warnings 0"
+  },
+  "dependencies": {
+    "@go-server/shared-types": "workspace:*",
+    "ioredis": "^5.3.2",
+    "ws": "^8.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/ws": "^8.5.10",
+    "tsx": "^4.7.3",
+    "typescript": "^5.4.5"
+  }
+}
