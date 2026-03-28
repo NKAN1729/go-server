@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   ci:
-    name: Test Â· Lint Â· Typecheck
+    name: Test · Lint · Typecheck
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -33,6 +33,14 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      # shared-types and go-game must be built before anything else
+      # because other packages resolve them via ./dist, which is gitignored
+      - name: Build shared-types
+        run: pnpm --filter @go-server/shared-types build
+
+      - name: Build go-game
+        run: pnpm --filter @go-server/go-game build
 
       - name: Typecheck (all workspaces)
         run: pnpm typecheck
